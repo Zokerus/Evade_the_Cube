@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://d71ndduxia15"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qmn0j"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_vu72c"]
+sky_material = SubResource("ProceduralSkyMaterial_qmn0j")
+
+[sub_resource type="Environment" id="Environment_bxdoq"]
+background_mode = 2
+sky = SubResource("Sky_vu72c")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.035
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bqhui"]
+size = Vector2(10, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssm77"]
+albedo_color = Color(0.0823529, 0.113725, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l2fwq"]
+material = SubResource("StandardMaterial3D_ssm77")
+size = Vector3(0.5, 0.3, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wubs"]
+size = Vector3(0.5, 0.3, 200)
+
+[node name="main" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bxdoq")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+mesh = SubResource("PlaneMesh_bqhui")
+
+[node name="RBoundary" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/RBoundary"]
+mesh = SubResource("BoxMesh_l2fwq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/RBoundary"]
+shape = SubResource("BoxShape3D_2wubs")
+
+[node name="LBoundary" type="StaticBody3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/LBoundary"]
+mesh = SubResource("BoxMesh_l2fwq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LBoundary"]
+shape = SubResource("BoxShape3D_2wubs")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 0)
+current = true
