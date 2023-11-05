@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Box
 
 enum BOXTYPE {RANDOM, FOOD, POISON}
 

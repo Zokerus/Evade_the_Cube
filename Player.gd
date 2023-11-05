@@ -19,4 +19,15 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_area_3d_body_entered(body):
-	print("treffer")
+	if body is Box:
+		if body.box_type == 1:
+			eat_food()
+		else:
+			eat_poison()
+		body.queue_free()
+
+func eat_food():
+	print("food")
+	
+func eat_poison():
+	print("poison")
