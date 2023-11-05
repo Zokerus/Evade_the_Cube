@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d71ndduxia15"]
+[gd_scene load_steps=12 format=3 uid="uid://d71ndduxia15"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_6qrvk"]
 [ext_resource type="PackedScene" uid="uid://b6iiotyfqy8m0" path="res://Player.tscn" id="1_g5yho"]
 [ext_resource type="PackedScene" uid="uid://d0b4v7cwf7rsx" path="res://Box.tscn" id="2_8qo4n"]
+[ext_resource type="PackedScene" uid="uid://c5pwa6ut01u0e" path="res://UI.tscn" id="4_6ds1c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qmn0j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -79,5 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -100)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="UI" parent="." instance=ExtResource("4_6ds1c")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
