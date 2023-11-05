@@ -1,6 +1,21 @@
 extends CharacterBody3D
 
+enum BOXTYPE {FOOD, POISON}
+
 const SPEED = 5.0
+@export var box_type: BOXTYPE
+
+@onready var body = $body
+
+
+func _init():
+	pass
+	#ff8e61 food
+	#ff1161 poison
+
+func _ready():
+	if box_type == BOXTYPE.FOOD:
+		body.get_surface_override_material(0).albedo_color = "ff8e61"
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -15,5 +30,3 @@ func _physics_process(delta):
 
 	if move_and_slide():
 		print("player collision")
-	
-	
