@@ -32,5 +32,4 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	if move_and_slide():
-		print("player collision")
+	move_and_slide():
