@@ -73,7 +73,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, -3)
 
 [node name="Box" parent="." instance=ExtResource("2_8qo4n")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.125, -19.9253)
-box_type = null
 
 [node name="Boxes" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -100)
