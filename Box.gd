@@ -1,9 +1,10 @@
 extends CharacterBody3D
+class_name Box
 
-enum BOXTYPE {FOOD, POISON}
+enum BOXTYPE {RANDOM, FOOD, POISON}
 
 const SPEED = 5.0
-@export var box_type: BOXTYPE
+@export var box_type: BOXTYPE = BOXTYPE.RANDOM
 
 @onready var body = $body
 
@@ -11,6 +12,11 @@ func _init():
 	pass
 
 func _ready():
+	if box_type == BOXTYPE.RANDOM:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		box_type = randi_range(0,1)+1
+
 	if box_type == BOXTYPE.FOOD:
 		body.get_surface_override_material(0).albedo_color = "ff8e61"
 	else:
@@ -27,5 +33,4 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	if move_and_slide():
-		print("player collision")
+	move_and_slide()

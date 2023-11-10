@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6iiotyfqy8m0"]
+[gd_scene load_steps=8 format=3 uid="uid://b6iiotyfqy8m0"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_xdqy4"]
 
@@ -19,6 +19,8 @@ height = 0.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t2cno"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xh3eh"]
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_xdqy4")
 
@@ -35,3 +37,13 @@ mesh = SubResource("SphereMesh_hvc6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_t2cno")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_xh3eh")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
