@@ -83,4 +83,5 @@ autostart = true
 
 [node name="UI" parent="." instance=ExtResource("4_6ds1c")]
 
+[connection signal="health_changed" from="Player" to="UI" method="update_health"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

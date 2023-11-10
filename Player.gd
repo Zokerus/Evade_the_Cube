@@ -4,6 +4,8 @@ const SPEED = 5.0
 
 var health_points: int = 50
 
+signal health_changed(hp: int)
+
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -30,4 +32,5 @@ func eat_food():
 	print("food")
 	
 func eat_poison():
-	print("poison")
+	health_points -= 10
+	health_changed.emit(health_points)
