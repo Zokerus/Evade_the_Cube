@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c5pwa6ut01u0e"]
+[gd_scene load_steps=2 format=3 uid="uid://c5pwa6ut01u0e"]
+
+[ext_resource type="Script" path="res://UI.gd" id="1_qrp0m"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -9,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_qrp0m")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
