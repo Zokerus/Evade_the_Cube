@@ -23,9 +23,6 @@ func _on_area_3d_body_entered(body):
 		if body.box_type == 2:
 			get_damage()
 		body.queue_free()
-
-func eat_food():
-	print("food")
 	
 func get_damage():
 	health_points -= 10
