@@ -18,5 +18,5 @@ func _on_spawn_timer_timeout():
 	rng.randomize()
 
 	var new_box = box.instantiate()
-	new_box.position.x = rng.randf_range(-4.7, 4.7)
+	new_box.position.x = rng.randf_range(-4.5, 4.5)
 	boxes.add_child(new_box)
