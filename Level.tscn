@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d71ndduxia15"]
+[gd_scene load_steps=13 format=3 uid="uid://d71ndduxia15"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_6qrvk"]
 [ext_resource type="PackedScene" uid="uid://b6iiotyfqy8m0" path="res://Player.tscn" id="1_g5yho"]
@@ -33,6 +33,9 @@ size = Vector3(0.5, 0.3, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wubs"]
 size = Vector3(0.5, 0.3, 200)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmj2x"]
+size = Vector3(10, 1, 0.1)
+
 [node name="main" type="Node3D"]
 script = ExtResource("1_6qrvk")
 
@@ -65,6 +68,15 @@ mesh = SubResource("BoxMesh_l2fwq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/LBoundary"]
 shape = SubResource("BoxShape3D_2wubs")
 
+[node name="EndOfWorld" type="Area3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/EndOfWorld"]
+shape = SubResource("BoxShape3D_pmj2x")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4, 0)
 current = true
@@ -83,5 +95,6 @@ autostart = true
 
 [node name="UI" parent="." instance=ExtResource("4_6ds1c")]
 
+[connection signal="body_entered" from="Ground/EndOfWorld" to="Player" method="missed_food"]
 [connection signal="health_changed" from="Player" to="UI" method="update_health"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
